@@ -1,10 +1,4 @@
--- Commit 1 test
-SELECT * FROM electric_vehicle_population_data;
+-- Most popular legislative district of Seattle
+SELECT * FROM electric_vehicle_population_data WHERE City = "Seattle"
 
-SELECT * FROM electric_vehicle_population_data WHERE County = "King" AND City = "Kent";
-
-SELECT * FROM electric_vehicle_population_data WHERE Model = "Niro"
-
--- Tests
-
-
+SELECT  `Legislative District`, count(`VIN (1-10)`) FROM electric_vehicle_population_data GROUP BY `Legislative District`
