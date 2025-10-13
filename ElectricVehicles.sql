@@ -12,15 +12,13 @@ GROUP BY CAFV;
 -- Identify how to divide the numbers
 SELECT distinct (`Electric Range`) as Ranges FROM electric_vehicle_population_data ORDER BY Ranges DESC;
 
-SELECT CASE WHEN `Electric Range` > 250 THEN "Highly Efficient"
-WHEN `Electric Range` BETWEEN 250 AND 160 THEN "Efficient"
-WHEN `Electric Range` BETWEEN 160 AND 80 THEN "Somewhat Efficient"
-WHEN `Electric Range` < 80 THEN "Not Efficient"
+SELECT CASE WHEN `Electric Range` < 80 THEN "Not Efficient"
+WHEN `Electric Range` BETWEEN 80 AND 160 THEN "Somewhat Efficient"
+WHEN `Electric Range` BETWEEN 160 AND 240 THEN "Efficient"
+WHEN `Electric Range` > 240 THEN "Highly Efficient"
 END AS Numbers,
-count(DISTINCT `VIN (1-10)`)
+count(DISTINCT `DOL Vehicle ID`)
 FROM electric_vehicle_population_data
-GROUP BY Numbers
+GROUP BY Numbers;
 
-SELECT * FROM electric_vehicle_population_data ORDER BY `Electric Range` DESC
-
-SELECT count (distinct `VIN (1-10)`) FROM electric_vehicle_population_data
+SELECT * FROM electric_vehicle_population_data ORDER BY `Electric Range` DESC;
